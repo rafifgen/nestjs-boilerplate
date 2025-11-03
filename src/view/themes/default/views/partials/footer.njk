@@ -1,0 +1,38 @@
+<!-- Footer -->
+<footer class="bg-gray-900 dark:bg-gray-950 text-white dark:text-gray-100 py-12 transition-colors duration-300">
+    <div class="container mx-auto px-4 text-center">
+        <div class="mb-8">
+            <img src="/images/logo.png" alt="{{ companyName or 'Data Trader Premium' }}" class="h-12 mx-auto mb-4">
+            <p class="text-gray-400 dark:text-gray-300">{{ tagline or 'Profit from Markets with Pro Traders' }}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h4 class="font-bold mb-4 text-white dark:text-gray-100">Platform</h4>
+                <ul class="space-y-2 text-gray-400 dark:text-gray-300">
+                    <li><a href="/#features" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Features</a></li>
+                    <li><a href="/pricing" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Pricing</a></li>
+                    <li><a href="/#track-record" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Track Record</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 text-white dark:text-gray-100">Community</h4>
+                <ul class="space-y-2 text-gray-400 dark:text-gray-300">
+                    <li><a href="/#testimonials" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Testimonials</a></li>
+                    <li><a href="#" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Discord</a></li>
+                    <li><a href="#" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">YouTube</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 text-white dark:text-gray-100">Support</h4>
+                <ul class="space-y-2 text-gray-400 dark:text-gray-300">
+                    <li><a href="/#faq" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">FAQ</a></li>
+                    <li><a href="#" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-white dark:hover:text-green-400 transition-colors duration-200">Help Center</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 dark:border-gray-600 pt-8">
+            <p class="text-gray-400 dark:text-gray-300">&copy; {{ currentYear or '2024' }} {{ companyName or 'Data Trader Premium' }}. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

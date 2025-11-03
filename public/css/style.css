@@ -1,0 +1,912 @@
+/* Custom styles */
+:root {
+    /* Light theme variables */
+    --background: #ffffff;
+    --text: #1a1a1a;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --section-bg: #f5f5f5;
+    --card-bg: #ffffff;
+}
+
+[data-theme="dark"] {
+    /* Dark theme variables */
+    --background: #0a0a0a;
+    --text: #ffffff;
+    --nav-bg: rgba(10, 10, 10, 0.9);
+    --section-bg: #111827;
+    --card-bg: #1f2937;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add gradient overlay to sections */
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0,255,157,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Enhance button hover effects */
+.hover\:bg-\[#00cc7d\]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 157, 0.2);
+}
+
+/* Add text gradient effect */
+.text-gradient {
+    background: linear-gradient(to right, var(--text), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+nav {
+    background-color: var(--nav-bg) !important;
+}
+
+.text-theme-text {
+    color: var(--text);
+}
+
+/* Light mode specific styles */
+[data-theme="light"] .bg-black {
+    background-color: var(--background);
+}
+
+[data-theme="light"] .testimonial-card {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Add margin for vertical nav on mobile */
+@media (max-width: 768px) {
+    body {
+        margin-left: 4rem;
+    }
+}
+
+/* Navigation Icons */
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+.nav-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+/* Enhanced Theme Toggle Styling */
+#themeToggle,
+#mobileThemeToggle {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#themeToggle:hover,
+#mobileThemeToggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+/* Add a subtle glow effect to theme toggle */
+#themeToggle:active,
+#mobileThemeToggle:active {
+    transform: scale(0.95);
+}
+
+/* Theme toggle icon animation */
+#themeToggle svg,
+#mobileThemeToggle svg {
+    transition: all 0.3s ease;
+}
+
+#themeToggle:hover svg,
+#mobileThemeToggle:hover svg {
+    transform: rotate(15deg);
+}
+
+/* Tooltip styles */
+.nav-icon {
+    position: relative;
+}
+
+.nav-icon:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    margin-left: 0.75rem;
+    z-index: 50;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #00f260 0%, #0575e6 100%);
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+/* FAQ Section Background */
+#faq {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(17, 24, 39, 0.95) 100%);
+    position: relative;
+}
+
+/* ==========================================
+   PRICING SECTION STYLES
+   ========================================== */
+
+/* Pricing Card - Base styles */
+.pricing-card {
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Light mode pricing card */
+.pricing-card,
+[data-theme="light"] .pricing-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.9) 100%) !important;
+    border: 1px solid rgba(209, 213, 219, 0.5) !important;
+    color: #1f2937 !important;
+}
+
+/* Dark mode pricing card */
+.dark .pricing-card,
+[data-theme="dark"] .pricing-card {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.95) 100%) !important;
+    border: 1px solid rgba(75, 85, 99, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+    color: #ffffff !important;
+}
+
+/* Pricing card text colors for light mode */
+.pricing-card h3,
+.pricing-card ul li,
+.pricing-card .text-5xl,
+[data-theme="light"] .pricing-card h3,
+[data-theme="light"] .pricing-card ul li,
+[data-theme="light"] .pricing-card .text-5xl {
+    color: #1f2937 !important;
+}
+
+/* Dark mode pricing card text colors */
+.dark .pricing-card h3,
+.dark .pricing-card ul li,
+.dark .pricing-card .text-5xl,
+[data-theme="dark"] .pricing-card h3,
+[data-theme="dark"] .pricing-card ul li,
+[data-theme="dark"] .pricing-card .text-5xl {
+    color: #ffffff !important;
+}
+
+/* Force dark styling for pricing section elements */
+[data-theme="dark"] .max-w-lg.mx-auto.bg-white {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.95) 0%, rgba(17, 24, 39, 0.9) 100%) !important;
+    border: 1px solid rgba(75, 85, 99, 0.4) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .bg-white {
+    background: rgba(31, 41, 55, 0.95) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .border-gray-200 {
+    border-color: rgba(75, 85, 99, 0.4) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+    color: rgb(209 213 219) !important;
+}
+
+[data-theme="dark"] .bg-yellow-50 {
+    background: rgba(217, 119, 6, 0.1) !important;
+    border-color: rgba(217, 119, 6, 0.3) !important;
+}
+
+[data-theme="dark"] .border-yellow-200 {
+    border-color: rgba(217, 119, 6, 0.3) !important;
+}
+
+/* Pricing Toggle Buttons */
+.pricing-toggle {
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pricing-toggle.active {
+    background-color: #10b981 !important;
+    color: white !important;
+    border-color: #10b981 !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Light mode inactive toggles */
+.pricing-toggle:not(.active) {
+    background-color: transparent;
+    border: 1px solid rgba(156, 163, 175, 0.5);
+    color: #6b7280;
+}
+
+/* Dark mode inactive toggles */
+.dark .pricing-toggle:not(.active),
+[data-theme="dark"] .pricing-toggle:not(.active) {
+    border-color: rgba(75, 85, 99, 0.5) !important;
+    color: #9ca3af !important;
+    background-color: transparent !important;
+}
+
+.pricing-toggle:not(.active):hover {
+    border-color: #10b981;
+    color: #10b981;
+    transform: translateY(-1px);
+}
+
+/* Price Text Enhancement */
+#price {
+    background: linear-gradient(135deg, #10b981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Yearly Badge */
+#yearly-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Features List Styling */
+.pricing-card ul li {
+    transition: all 0.2s ease;
+    padding: 8px 0;
+    border-radius: 6px;
+}
+
+.pricing-card ul li:hover {
+    background-color: rgba(16, 185, 129, 0.05);
+    transform: translateX(4px);
+}
+
+.dark .pricing-card ul li:hover,
+[data-theme="dark"] .pricing-card ul li:hover {
+    background-color: rgba(16, 185, 129, 0.1);
+}
+
+/* Join Button Enhancement */
+.pricing-card a[href="#subscribe"] {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-card a[href="#subscribe"]:hover {
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+    transform: translateY(-2px);
+}
+
+.pricing-card a[href="#subscribe"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.pricing-card a[href="#subscribe"]:hover::before {
+    left: 100%;
+}
+
+/* Payment Security Badges */
+.pricing-card + div span {
+    transition: all 0.2s ease;
+}
+
+.pricing-card + div span:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Pricing Card */
+@media (max-width: 768px) {
+    .pricing-card {
+        margin: 0 16px;
+        padding: 24px;
+    }
+    
+    #price {
+        font-size: 2.5rem;
+    }
+}
+
+/* Smooth transitions for all pricing elements */
+.pricing-card * {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Ensure pricing section background changes with theme */
+#pricing {
+    transition: background-color 0.3s ease;
+}
+
+.dark #pricing,
+[data-theme="dark"] #pricing {
+    background-color: rgba(17, 24, 39, 0.5);
+}
+
+/* Enhanced Theme Toggle Styling */
+#themeToggle, #mobileThemeToggle {
+    min-width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme toggle hover effects */
+#themeToggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#mobileThemeToggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Light mode theme toggle styling */
+[data-theme="light"] #themeToggle {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(209, 213, 219, 0.8) !important;
+    color: #1f2937 !important;
+}
+
+[data-theme="light"] #themeToggle:hover {
+    background: rgba(243, 244, 246, 0.95) !important;
+}
+
+/* Dark mode theme toggle styling */
+[data-theme="dark"] #themeToggle {
+    background: rgba(31, 41, 55, 0.9) !important;
+    border-color: rgba(75, 85, 99, 0.8) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] #themeToggle:hover {
+    background: rgba(55, 65, 81, 0.95) !important;
+}
+
+/* Footer theme adaptation */
+[data-theme="light"] footer {
+    background: linear-gradient(135deg, rgba(243, 244, 246, 0.95) 0%, rgba(229, 231, 235, 0.9) 100%) !important;
+    color: #1f2937 !important;
+}
+
+[data-theme="light"] footer h4 {
+    color: #111827 !important;
+}
+
+[data-theme="light"] footer .text-gray-400 {
+    color: #6b7280 !important;
+}
+
+[data-theme="light"] footer a:hover {
+    color: #059669 !important;
+}
+
+[data-theme="light"] footer .border-gray-800 {
+    border-color: rgba(209, 213, 219, 0.5) !important;
+}
+
+/* ==========================================
+   TESTIMONIALS SECTION STYLES
+   ========================================== */
+
+/* Testimonials Container */
+.testimonials-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Testimonials Track */
+.testimonials-track {
+    display: flex;
+    gap: 24px;
+    animation: testimonials-scroll 60s linear infinite;
+    will-change: transform;
+}
+
+/* Pause animation on hover */
+.testimonials-wrapper:hover .testimonials-track {
+    animation-play-state: paused;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light mode testimonial cards (default) */
+.testimonial-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.9) 100%);
+    border: 1px solid rgba(209, 213, 219, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card h3 {
+    color: #1f2937;
+}
+
+.testimonial-card p {
+    color: #4b5563;
+}
+
+.testimonial-card .font-semibold {
+    color: #1f2937;
+}
+
+/* Dark mode testimonial cards */
+.dark .testimonial-card,
+[data-theme="dark"] .testimonial-card {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.9) 0%, rgba(17, 24, 39, 0.95) 100%) !important;
+    border: 1px solid rgba(75, 85, 99, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .testimonial-card h3,
+[data-theme="dark"] .testimonial-card h3 {
+    color: #ffffff !important;
+}
+
+.dark .testimonial-card p,
+[data-theme="dark"] .testimonial-card p {
+    color: #d1d5db !important;
+}
+
+.dark .testimonial-card .font-semibold,
+[data-theme="dark"] .testimonial-card .font-semibold {
+    color: #ffffff !important;
+}
+
+.testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Light mode hover effects */
+.testimonial-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode hover effects */
+.dark .testimonial-card:hover,
+[data-theme="dark"] .testimonial-card:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Author Name Styling - gradient effect for both themes */
+.testimonial-card .font-semibold {
+    background: linear-gradient(135deg, #10b981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Override gradient for better readability in light mode */
+:root .testimonial-card .font-semibold,
+[data-theme="light"] .testimonial-card .font-semibold {
+    background: linear-gradient(135deg, #10b981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Override gradient for dark mode - keep it but ensure it's visible */
+.dark .testimonial-card .font-semibold,
+[data-theme="dark"] .testimonial-card .font-semibold {
+    background: linear-gradient(135deg, #34d399, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Fade Overlays */
+.testimonial-fade-left,
+.testimonial-fade-right {
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Default fade overlays (light mode) */
+.testimonial-fade-left {
+    background: linear-gradient(to right, #f8fafc 0%, rgba(248, 250, 252, 0.8) 50%, transparent 100%);
+}
+
+.testimonial-fade-right {
+    background: linear-gradient(to left, #f8fafc 0%, rgba(248, 250, 252, 0.8) 50%, transparent 100%);
+}
+
+/* Light mode fade overlays */
+:root .testimonial-fade-left,
+[data-theme="light"] .testimonial-fade-left {
+    background: linear-gradient(to right, #f8fafc 0%, rgba(248, 250, 252, 0.8) 50%, transparent 100%);
+}
+
+:root .testimonial-fade-right,
+[data-theme="light"] .testimonial-fade-right {
+    background: linear-gradient(to left, #f8fafc 0%, rgba(248, 250, 252, 0.8) 50%, transparent 100%);
+}
+
+/* Dark mode fade overlays */
+.dark .testimonial-fade-left,
+[data-theme="dark"] .testimonial-fade-left {
+    background: linear-gradient(to right, #0f172a 0%, rgba(15, 23, 42, 0.8) 50%, transparent 100%);
+}
+
+.dark .testimonial-fade-right,
+[data-theme="dark"] .testimonial-fade-right {
+    background: linear-gradient(to left, #0f172a 0%, rgba(15, 23, 42, 0.8) 50%, transparent 100%);
+}
+
+/* Testimonials Animation */
+@keyframes testimonials-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Star Ratings */
+.testimonial-card .text-yellow-400 {
+    font-size: 14px;
+    filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.5));
+}
+
+/* Author Name Styling */
+.testimonial-card .font-semibold {
+    background: linear-gradient(135deg, #10b981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .testimonial-card {
+        width: 300px !important;
+        padding: 20px;
+    }
+    
+    .testimonials-track {
+        gap: 16px;
+    }
+    
+    .testimonial-fade-left,
+    .testimonial-fade-right {
+        width: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-card {
+        width: 280px !important;
+        padding: 16px;
+    }
+    
+    .testimonial-card h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .testimonial-card p {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+}
+
+#faq::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* FAQ Title styling */
+#faq h2 {
+    background: linear-gradient(135deg, #ffffff 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* FAQ Styling */
+.faq-wrap {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: rgba(31, 41, 55, 0.8);
+    border: 1px solid rgba(55, 65, 81, 0.6);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.faq-item:hover {
+    border-color: rgba(16, 185, 129, 0.4);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1);
+    transform: translateY(-2px);
+}
+
+.faq-trigger {
+    cursor: pointer;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+
+.faq-trigger:hover {
+    background-color: rgba(55, 65, 81, 0.3);
+}
+
+.faq-trigger h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.5;
+    flex: 1;
+    padding-right: 1rem;
+}
+
+.faq-icon-wrap {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.faq-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #10b981;
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-item.active .faq-icon-wrap {
+    background: rgba(16, 185, 129, 0.2);
+}
+
+.faq-content {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+}
+
+.faq-item.active .faq-content {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.faq-inner {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.faq-text {
+    color: #d1d5db;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.faq-text a {
+    color: #10b981;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.faq-text a:hover {
+    color: #059669;
+}
+
+/* Dark theme enhancements for FAQ */
+[data-theme="dark"] .faq-item {
+    background: rgba(17, 24, 39, 0.9);
+    border-color: rgba(55, 65, 81, 0.8);
+}
+
+[data-theme="dark"] .faq-trigger:hover {
+    background-color: rgba(75, 85, 99, 0.3);
+}
+
+[data-theme="dark"] #faq {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(17, 24, 39, 0.98) 100%);
+}
+
+/* Light theme for FAQ */
+[data-theme="light"] #faq {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.98) 100%);
+}
+
+[data-theme="light"] #faq h2 {
+    background: linear-gradient(135deg, #1f2937 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .faq-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(209, 213, 219, 0.8);
+}
+
+[data-theme="light"] .faq-trigger h3 {
+    color: #1f2937;
+}
+
+[data-theme="light"] .faq-trigger:hover {
+    background-color: rgba(243, 244, 246, 0.8);
+}
+
+[data-theme="light"] .faq-text {
+    color: #4b5563;
+}
+
+/* Responsive adjustments for FAQ */
+@media (max-width: 768px) {
+    .faq-trigger {
+        padding: 1.25rem;
+    }
+    
+    .faq-trigger h3 {
+        font-size: 1rem;
+    }
+    
+    .faq-inner {
+        padding: 0 1.25rem 1.25rem 1.25rem;
+    }
+    
+    .faq-text {
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation for FAQ content reveal */
+@keyframes faqExpand {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+@keyframes faqCollapse {
+    from {
+        max-height: 500px;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+    }
+}
+
+.faq-item.expanding .faq-content {
+    animation: faqExpand 0.3s ease forwards;
+}
+
+.faq-item.collapsing .faq-content {
+    animation: faqCollapse 0.3s ease forwards;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.faq-question {
+    cursor: pointer;
+    padding: 1.5rem 0;
+}
+
+.faq-answer {
+    padding-bottom: 1.5rem;
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}

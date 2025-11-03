@@ -1,0 +1,318 @@
+{% extends "layouts/base.njk" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="pt-20 pb-20">
+    <div class="container mx-auto px-8 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">{{ heroTitle or 'Profit from Markets<br>with Pro Traders' }}</h1>
+        <p class="text-xl mb-8">{{ heroSubtitle or 'Get Trade Alerts, Daily Analysis, and Educational Guides.' }}</p>
+        <p class="text-green-500 text-lg mb-8">{{ heroDescription or 'Direct access to Expert traders with a proven track record ↗' }}</p>
+        <a href="/pricing" class="bg-green-500 text-white px-8 py-3 rounded-full text-lg hover:bg-green-600 transition duration-300">{{ ctaText or 'Join Now' }}</a>
+        <div class="mt-8">
+            <p class="text-gray-500 dark:text-gray-400">{{ subscriberCount or '770k+' }} Subscribers on YouTube</p>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-20 bg-section-bg">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">What You Get</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Real-Time Trade Alerts</h3>
+                <p class="text-gray-600 dark:text-gray-400">Get instant notifications for Crypto, Forex, and US Stocks opportunities.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Daily Market Analysis</h3>
+                <p class="text-gray-600 dark:text-gray-400">Professional insights and trade ideas from experienced traders.</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Educational Materials</h3>
+                <p class="text-gray-600 dark:text-gray-400">Learn from comprehensive guides and become an independent trader.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Track Record Section -->
+<section id="track-record" class="py-20">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Our Track Record</h2>
+        <div class="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-green-500 mb-2">85%</div>
+                    <div class="text-gray-600 dark:text-gray-400">Win Rate</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-green-500 mb-2">770k+</div>
+                    <div class="text-gray-600 dark:text-gray-400">YouTube Subscribers</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-green-500 mb-2">24/7</div>
+                    <div class="text-gray-600 dark:text-gray-400">Market Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 bg-section-bg">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">What members say about us</h2>
+        
+        <!-- Testimonials Container -->
+        <div class="relative">
+            <!-- Fade Overlays -->
+            <div class="testimonial-fade-left absolute left-0 top-0 bottom-0 w-16 md:w-32"></div>
+            <div class="testimonial-fade-right absolute right-0 top-0 bottom-0 w-16 md:w-32"></div>
+            
+            <!-- Testimonials Scroll Container -->
+            <div class="testimonials-container overflow-hidden">
+                <div class="testimonials-track flex space-x-6">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"Data Trader Premium Has Made Me a Better Trader"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">As a beginner trader, I was struggling to find consistent results. Data Trader Premium not only provided accurate signals but also educated me on the 'why' behind each trade. The community is supportive, and the analysts are knowledgeable. I've seen significant improvement in my trading performance since joining.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Daniel Iocob</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"Trusted Investment, Amazing Returns"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">I've been in multiple trading groups, but Data Trader Premium stands out. Their transparency about wins and losses, combined with detailed explanations for each signal, has helped me understand market dynamics better. The educational content is top-notch, and the community atmosphere is incredibly positive.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Ronny Sveigdalen</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"I Just Take the Setups and Go About My Day"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">I've been in a couple premium private groups but Data Trader is home for me. Very relaxing and yet extremely productive community. High quality setups. I don't have to monitor the charts, the Data Trader analysts do that for me. All I do is take the setups and go about my business and check discord when I can for updates and new setups.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Destiny Child</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"This Place Actually Teaches You How to Trade"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">This has been a game changer for me. Data Trader Premium doesn't just give me signals but also reason for that signals, also they have a category that actually teach me to become an independent trader. The content is regularly updated to match current market conditions, the analysis signals is thorough, and most importantly it delivers results.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Kreuz</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"Best Trading Community I've Been In"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">Hands down one of the best trading communities out there. The signals have been incredibly accurate, each result speaks volumes about the consistency and expertise behind them. The quality of conversations is top-tier: insightful, supportive, and always value-packed. Truly impressed with the overall experience so far.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Manraj Dua</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"Explains the Trades So You Actually Learn"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">This trading community is absolutely worth joining! I've learned so much here, not just blindly copying trades, but actually understanding the logic behind them. The analysts explain their strategies clearly, which really helps you grow as a trader. The community vibe is also amazing. Everyone is friendly and supportive.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Arron SU</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 7 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"Solid Growth Since Day One"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">Been in the community since day one, and I'm really impressed. The team is super helpful with any questions or problems, and the course gives you a solid base with some of the strategies the analysts use. There are new signals and setups every day, daily analysis, and the results speak for themselves.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Alex</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 8 -->
+                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                        <h3 class="text-lg font-bold text-white mb-4">"Accurate Signals, Consistent Results"</h3>
+                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">Data Trader Premium is an excellent trading signals community. The signals are accurate, timely, and backed by solid analysis. I've seen consistent results and gained more confidence in my trading decisions. The community is supportive, and the admins are knowledgeable and responsive.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-white font-semibold text-sm">Fighter</span>
+                            </div>
+                            <div class="flex space-x-1">
+                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" class="py-20">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+        <div class="max-w-3xl mx-auto space-y-4">
+            <!-- FAQ Items -->
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>What markets do you cover?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">We provide real-time trade alerts for Crypto, Forex, and US Stocks. Our expert analysts monitor these markets 24/7 to identify the best opportunities for our members.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>How do I receive the trade alerts?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">All trade alerts are delivered through our exclusive Discord community. You'll get instant notifications on your phone and computer, ensuring you never miss a profitable opportunity.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>Can I cancel my subscription anytime?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">Yes, absolutely! You can cancel your subscription at any time with just one click. No questions asked, no hidden fees, and no commitments.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>Do you provide educational content?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">Yes! We provide comprehensive educational materials including trading guides, market analysis techniques, and risk management strategies to help you become an independent trader.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>What makes Data Trader Premium different?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">We don't just give you signals - we explain the reasoning behind each trade, provide daily market analysis, and maintain a proven track record. Our community is built on transparency and education.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>How much should I invest to get started?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">We recommend starting with an amount you're comfortable with - there's no minimum requirement. Our signals work with any account size. Always practice proper risk management and never invest more than you can afford to lose.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200">
+                    <span>Is there a money-back guarantee?</span>
+                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <div class="faq-answer px-6 pb-4 hidden">
+                    <p class="text-gray-600 dark:text-gray-300">While we don't offer refunds due to the nature of our digital services, you can cancel your subscription at any time to avoid future charges. We're confident in our service quality and track record.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-20 bg-gradient-to-r from-green-500 to-blue-600">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform Your Trading?</h2>
+        <p class="text-xl text-green-100 mb-8">Join thousands of successful traders who trust our signals</p>
+        <a href="/pricing" class="inline-block bg-white text-green-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300">Get Started Today</a>
+    </div>
+</section>
+{% endblock %}

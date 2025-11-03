@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{{ title or 'Untitled' }}{% endblock %}</title>
+    {% include "partials/meta.njk" %}
+    <link rel="stylesheet" href="/assets/dark.css" />
+  </head>
+  <body style="background:#121212;color:#eaeaea;">
+    <header>
+      <h1>Boilerplate (Dark)</h1>
+  <div class="banner">{% renderregion "header-banner" %}</div>
+      {% include "partials/nav.njk" %}
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+      <aside>
+        {% block sidebar %}
+          {% include "partials/sidebar.njk" %}
+        {% endblock %}
+      </aside>
+    </main>
+    <footer>
+      {% include "partials/footer.njk" %}
+    </footer>
+  </body>
+</html>
