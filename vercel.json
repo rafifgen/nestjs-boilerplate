@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/main.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/main.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"]
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "FILE_DRIVER": "s3",
+    "DATABASE_TYPE": "postgres",
+    "DATABASE_SYNCHRONIZE": "false",
+    "DATABASE_MAX_CONNECTIONS": "100",
+    "DATABASE_SSL_ENABLED": "true",
+    "DATABASE_REJECT_UNAUTHORIZED": "false",
+    "API_PREFIX": "api",
+    "APP_FALLBACK_LANGUAGE": "en",
+    "APP_HEADER_LANGUAGE": "x-custom-lang"
+  },
+  "functions": {
+    "src/main.ts": {
+      "maxDuration": 30
+    }
+  }
+}
