@@ -79,17 +79,41 @@
 <section id="testimonials" class="py-20 bg-section-bg">
     <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-12">What members say about us</h2>
-        
+
         <!-- Testimonials Container -->
         <div class="relative">
             <!-- Fade Overlays -->
             <div class="testimonial-fade-left absolute left-0 top-0 bottom-0 w-16 md:w-32"></div>
             <div class="testimonial-fade-right absolute right-0 top-0 bottom-0 w-16 md:w-32"></div>
-            
+
             <!-- Testimonials Scroll Container -->
             <div class="testimonials-container overflow-hidden">
                 <div class="testimonials-track flex space-x-6">
-                    <!-- Testimonial 1 -->
+                    {% if testimonials | length > 0 %}
+                        {% for testimonial in testimonials %}
+                        <!-- Testimonial {{ loop.index }} -->
+                        <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
+                            <h3 class="text-lg font-bold text-white mb-4">"{{ testimonial.position }}"</h3>
+                            <p class="text-gray-300 mb-6 text-sm leading-relaxed">{{ testimonial.content }}</p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    {% if testimonial.avatar %}
+                                    <img src="{{ testimonial.avatar }}" alt="{{ testimonial.name }}" class="w-10 h-10 rounded-full">
+                                    {% else %}
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    {% endif %}
+                                    <span class="text-white font-semibold text-sm">{{ testimonial.name }}</span>
+                                </div>
+                                <div class="flex space-x-1">
+                                    <span class="text-yellow-400">
+                                        {% for i in range(0, testimonial.rating) %}⭐{% endfor %}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <!-- Fallback: No testimonials in database -->
                     <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
                         <h3 class="text-lg font-bold text-white mb-4">"Data Trader Premium Has Made Me a Better Trader"</h3>
                         <p class="text-gray-300 mb-6 text-sm leading-relaxed">As a beginner trader, I was struggling to find consistent results. Data Trader Premium not only provided accurate signals but also educated me on the 'why' behind each trade. The community is supportive, and the analysts are knowledgeable. I've seen significant improvement in my trading performance since joining.</p>
@@ -208,6 +232,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
