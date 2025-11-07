@@ -2,31 +2,32 @@
 	"version": 2,
 	"builds": [
 		{
-			"src": "src/main.ts",
-			"use": "@vercel/node"
+			"src": "api/index.ts",
+			"use": "@vercel/node",
+			"config": {
+				"includeFiles": ["src/**", "dist/**", "files/public/**", "public/**"]
+			}
 		}
 	],
 	"routes": [
 		{
+			"src": "/assets/(.*)",
+			"dest": "/api"
+		},
+		{
+			"src": "/js/(.*)",
+			"dest": "/api"
+		},
+		{
 			"src": "/(.*)",
-			"dest": "src/main.ts",
-			"methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"]
+			"dest": "/api"
 		}
 	],
 	"env": {
-		"NODE_ENV": "production",
-		"FILE_DRIVER": "local",
-		"DATABASE_TYPE": "postgres",
-		"DATABASE_SYNCHRONIZE": "false",
-		"DATABASE_MAX_CONNECTIONS": "100",
-		"DATABASE_SSL_ENABLED": "true",
-		"DATABASE_REJECT_UNAUTHORIZED": "false",
-		"API_PREFIX": "api",
-		"APP_FALLBACK_LANGUAGE": "en",
-		"APP_HEADER_LANGUAGE": "x-custom-lang"
+		"NODE_ENV": "production"
 	},
 	"functions": {
-		"src/main.ts": {
+		"api/index.ts": {
 			"maxDuration": 30
 		}
 	}
