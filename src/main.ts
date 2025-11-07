@@ -1,8 +1,9 @@
 import 'dotenv/config';
 import {
-  ClassSerializerInterceptor,
-  ValidationPipe,
-  VersioningType,
+	ClassSerializerInterceptor,
+	ValidationPipe,
+	VersioningType,
+	RequestMethod,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
@@ -17,64 +18,73 @@ import { AllConfigType } from './config/config.type';
 import { ResolvePromisesInterceptor } from './utils/serializer.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    cors: true,
-  });
-  useContainer(app.select(AppModule), { fallbackOnErrors: true });
+	const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+		cors: true,
+	});
+	useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  app.useStaticAssets(path.join(__dirname, '..', 'public'));
-  app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
-  app.setViewEngine('hbs');
-  const configService = app.get(ConfigService<AllConfigType>);
+	app.useStaticAssets(path.join(__dirname, '..', 'public'));
+	app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
+	app.setViewEngine('hbs');
+	const configService = app.get(ConfigService<AllConfigType>);
 
-  app.enableShutdownHooks();
-  app.setGlobalPrefix(
-    configService.getOrThrow('app.apiPrefix', { infer: true }),
-    {
-      exclude: ['/', '/pricing'],
-    },
-  );
-  app.enableVersioning({
-    type: VersioningType.URI,
-  });
-  app.useGlobalPipes(new ValidationPipe(validationOptions));
-  app.useGlobalInterceptors(
-    // ResolvePromisesInterceptor is used to resolve promises in responses because class-transformer can't do it
-    // https://github.com/typestack/class-transformer/issues/549
-    new ResolvePromisesInterceptor(),
-    new ClassSerializerInterceptor(app.get(Reflector)),
-  );
+	app.enableShutdownHooks();
+	app.setGlobalPrefix(
+		configService.getOrThrow('app.apiPrefix', { infer: true }),
+		{
+			exclude: [
+				'/',
+				'/pricing',
+				'/admin/testimonials',
+				'/admin/testimonials/create',
+				{ path: '/admin/testimonials/:id/edit', method: RequestMethod.GET },
+				{ path: '/admin/testimonials/:id', method: RequestMethod.GET },
+				{ path: '/admin/testimonials/:id', method: RequestMethod.POST },
+				{ path: '/admin/testimonials/:id/delete', method: RequestMethod.POST },
+			],
+		},
+	);
+	app.enableVersioning({
+		type: VersioningType.URI,
+	});
+	app.useGlobalPipes(new ValidationPipe(validationOptions));
+	app.useGlobalInterceptors(
+		// ResolvePromisesInterceptor is used to resolve promises in responses because class-transformer can't do it
+		// https://github.com/typestack/class-transformer/issues/549
+		new ResolvePromisesInterceptor(),
+		new ClassSerializerInterceptor(app.get(Reflector)),
+	);
 
-  const options = new DocumentBuilder()
-    .setTitle('API')
-    .setDescription('API docs')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .addGlobalParameters({
-      in: 'header',
-      required: false,
-      name: process.env.APP_HEADER_LANGUAGE || 'x-custom-lang',
-      schema: {
-        example: 'en',
-      },
-    })
-    .build();
+	const options = new DocumentBuilder()
+		.setTitle('API')
+		.setDescription('API docs')
+		.setVersion('1.0')
+		.addBearerAuth()
+		.addGlobalParameters({
+			in: 'header',
+			required: false,
+			name: process.env.APP_HEADER_LANGUAGE || 'x-custom-lang',
+			schema: {
+				example: 'en',
+			},
+		})
+		.build();
 
-  const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('docs', app, document);
+	const document = SwaggerModule.createDocument(app, options);
+	SwaggerModule.setup('docs', app, document);
 
-  // Serve static assets (CSS etc.) from files/public
-  app.use(
-    '/assets',
-    express.static(path.join(__dirname, '..', 'files', 'public', 'assets')),
-  );
+	// Serve static assets (CSS etc.) from files/public
+	app.use(
+		'/assets',
+		express.static(path.join(__dirname, '..', 'files', 'public', 'assets')),
+	);
 
-  // Serve client JS (main.js) from files/public/js so pages can load /js/main.js
-  app.use(
-    '/js',
-    express.static(path.join(__dirname, '..', 'files', 'public', 'js')),
-  );
+	// Serve client JS (main.js) from files/public/js so pages can load /js/main.js
+	app.use(
+		'/js',
+		express.static(path.join(__dirname, '..', 'files', 'public', 'js')),
+	);
 
-  await app.listen(configService.getOrThrow('app.port', { infer: true }));
+	await app.listen(configService.getOrThrow('app.port', { infer: true }));
 }
 void bootstrap();
