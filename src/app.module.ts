@@ -29,73 +29,77 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { MongooseConfigService } from './database/mongoose-config.service';
 import { DatabaseConfig } from './database/config/database-config.type';
 import { WebModule } from './web/web.module';
+import { TestimonialsModule } from './testimonials/testimonials.module';
+import { AdminModule } from './admin/admin.module';
 
 // <database-block>
 const infrastructureDatabaseModule = (databaseConfig() as DatabaseConfig)
-  .isDocumentDatabase
-  ? MongooseModule.forRootAsync({
-      useClass: MongooseConfigService,
-    })
-  : TypeOrmModule.forRootAsync({
-      useClass: TypeOrmConfigService,
-      dataSourceFactory: async (options: DataSourceOptions) => {
-        return new DataSource(options).initialize();
-      },
-    });
+	.isDocumentDatabase
+	? MongooseModule.forRootAsync({
+			useClass: MongooseConfigService,
+		})
+	: TypeOrmModule.forRootAsync({
+			useClass: TypeOrmConfigService,
+			dataSourceFactory: async (options: DataSourceOptions) => {
+				return new DataSource(options).initialize();
+			},
+		});
 // </database-block>
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-      load: [
-        databaseConfig,
-        authConfig,
-        appConfig,
-        mailConfig,
-        fileConfig,
-        viewConfig,
-        facebookConfig,
-        googleConfig,
-        appleConfig,
-      ],
-      envFilePath: ['.env'],
-    }),
-    infrastructureDatabaseModule,
-    I18nModule.forRootAsync({
-      useFactory: (configService: ConfigService<AllConfigType>) => ({
-        fallbackLanguage: configService.getOrThrow('app.fallbackLanguage', {
-          infer: true,
-        }),
-        loaderOptions: { path: path.join(__dirname, '/i18n/'), watch: true },
-      }),
-      resolvers: [
-        {
-          use: HeaderResolver,
-          useFactory: (configService: ConfigService<AllConfigType>) => {
-            return [
-              configService.get('app.headerLanguage', {
-                infer: true,
-              }),
-            ];
-          },
-          inject: [ConfigService],
-        },
-      ],
-      imports: [ConfigModule],
-      inject: [ConfigService],
-    }),
-    UsersModule,
-    FilesModule,
-    AuthModule,
-    AuthFacebookModule,
-    AuthGoogleModule,
-    AuthAppleModule,
-    SessionModule,
-    MailModule,
-    MailerModule,
-    HomeModule,
-    WebModule,
-  ],
+	imports: [
+		ConfigModule.forRoot({
+			isGlobal: true,
+			load: [
+				databaseConfig,
+				authConfig,
+				appConfig,
+				mailConfig,
+				fileConfig,
+				viewConfig,
+				facebookConfig,
+				googleConfig,
+				appleConfig,
+			],
+			envFilePath: ['.env'],
+		}),
+		infrastructureDatabaseModule,
+		I18nModule.forRootAsync({
+			useFactory: (configService: ConfigService<AllConfigType>) => ({
+				fallbackLanguage: configService.getOrThrow('app.fallbackLanguage', {
+					infer: true,
+				}),
+				loaderOptions: { path: path.join(__dirname, '/i18n/'), watch: true },
+			}),
+			resolvers: [
+				{
+					use: HeaderResolver,
+					useFactory: (configService: ConfigService<AllConfigType>) => {
+						return [
+							configService.get('app.headerLanguage', {
+								infer: true,
+							}),
+						];
+					},
+					inject: [ConfigService],
+				},
+			],
+			imports: [ConfigModule],
+			inject: [ConfigService],
+		}),
+		UsersModule,
+		FilesModule,
+		AuthModule,
+		AuthFacebookModule,
+		AuthGoogleModule,
+		AuthAppleModule,
+		SessionModule,
+		MailModule,
+		MailerModule,
+		HomeModule,
+		WebModule,
+		TestimonialsModule,
+		AdminModule,
+	],
 })
 export class AppModule {}

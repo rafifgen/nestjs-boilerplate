@@ -1,0 +1,104 @@
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+<div class="pt-20">
+  <div class="container mx-auto px-4 py-8 max-w-2xl">
+    <h1 class="text-3xl font-bold mb-6">{{ action }} Testimonial</h1>
+
+    <form action="{% if testimonial %}/admin/testimonials/{{ testimonial.id }}{% else %}/admin/testimonials{% endif %}" method="POST" class="bg-gray-800 shadow-md rounded-lg p-6">
+    <div class="mb-4">
+      <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Name *</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value="{{ testimonial.name if testimonial else '' }}"
+        required
+        maxlength="100"
+        class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-900 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="position" class="block text-gray-300 text-sm font-bold mb-2">Position *</label>
+      <input
+        type="text"
+        id="position"
+        name="position"
+        value="{{ testimonial.position if testimonial else '' }}"
+        required
+        maxlength="200"
+        class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-900 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="content" class="block text-gray-300 text-sm font-bold mb-2">Testimonial Content *</label>
+      <textarea
+        id="content"
+        name="content"
+        rows="5"
+        required
+        class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-900 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+      >{{ testimonial.content if testimonial else '' }}</textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="avatar" class="block text-gray-300 text-sm font-bold mb-2">Avatar URL</label>
+      <input
+        type="url"
+        id="avatar"
+        name="avatar"
+        value="{{ testimonial.avatar if testimonial and testimonial.avatar else '' }}"
+        placeholder="https://example.com/avatar.jpg"
+        class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-900 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+      />
+      <p class="text-gray-500 text-xs mt-1">Optional: Provide a URL to the person's avatar image</p>
+    </div>
+
+    <div class="mb-4">
+      <label for="rating" class="block text-gray-300 text-sm font-bold mb-2">Rating *</label>
+      <select
+        id="rating"
+        name="rating"
+        required
+        class="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 bg-gray-900 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+      >
+        {% for i in range(1, 6) %}
+          <option value="{{ i }}" {% if testimonial and testimonial.rating == i %}selected{% elif not testimonial and i == 5 %}selected{% endif %}>
+            {{ i }} Star{{ 's' if i > 1 else '' }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-6">
+      <label class="flex items-center">
+        <input
+          type="checkbox"
+          name="isActive"
+          value="true"
+          {% if not testimonial or testimonial.isActive %}checked{% endif %}
+          class="mr-2"
+        />
+        <span class="text-gray-300 text-sm font-bold">Active (Show on website)</span>
+      </label>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        {{ action }} Testimonial
+      </button>
+      <a
+        href="/admin/testimonials"
+        class="inline-block align-baseline font-bold text-sm text-blue-400 hover:text-blue-300"
+      >
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>
+{% endblock %}
