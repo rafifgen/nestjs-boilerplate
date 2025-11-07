@@ -1,5 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { ExpressAdapter, NestExpressApplication } from '@nestjs/platform-express';
+import {
+	ExpressAdapter,
+	NestExpressApplication,
+} from '@nestjs/platform-express';
 import { AppModule } from '../src/app.module';
 import express from 'express';
 import {
@@ -14,8 +17,10 @@ import { Reflector } from '@nestjs/core';
 import { AllConfigType } from '../src/config/config.type';
 import { ResolvePromisesInterceptor } from '../src/utils/serializer.interceptor';
 import validationOptions from '../src/utils/validation-options';
+import path from 'path';
 
 const server = express();
+
 let app: NestExpressApplication;
 
 async function createNestApp(): Promise<any> {
@@ -29,6 +34,21 @@ async function createNestApp(): Promise<any> {
 		);
 
 		useContainer(nestApp.select(AppModule), { fallbackOnErrors: true });
+
+		// Static assets configuration for Vercel
+		nestApp.useStaticAssets(path.join(__dirname, '..', 'public'));
+		nestApp.useStaticAssets(
+			path.join(__dirname, '..', 'files', 'public', 'assets'),
+			{
+				prefix: '/assets',
+			},
+		);
+		nestApp.useStaticAssets(
+			path.join(__dirname, '..', 'files', 'public', 'js'),
+			{
+				prefix: '/js',
+			},
+		);
 
 		const configService = nestApp.get(ConfigService<AllConfigType>);
 
