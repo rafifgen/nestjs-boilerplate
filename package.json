@@ -70,7 +70,7 @@
 		"multer-s3": "3.0.1",
 		"nestjs-i18n": "10.5.1",
 		"nodemailer": "7.0.6",
-		"nunjucks": "^3.2.4",
+		"nunjucks": "3.2.3",
 		"passport": "0.7.0",
 		"passport-anonymous": "1.0.1",
 		"passport-jwt": "4.0.1",
@@ -122,6 +122,11 @@
 		"tsconfig-paths": "4.2.0",
 		"tslib": "2.8.1",
 		"typescript": "5.9.2"
+	},
+	"overrides": {
+		"nunjucks": {
+			"chokidar": "^3.3.0"
+		}
 	},
 	"jest": {
 		"moduleFileExtensions": [
