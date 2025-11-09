@@ -9,6 +9,33 @@
     {% block head %}{% endblock %}
 </head>
 <body>
+    <!-- Set initial theme as early as possible to avoid flash -->
+    <script>
+        (function() {
+            try {
+                var stored = localStorage.getItem('theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (stored === 'dark' || (!stored && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            } catch (e) {
+                // ignore
+            }
+        })();
+    </script>
+
+    <!-- SVG sprite: define icons once for the whole document -->
+    <svg aria-hidden="true" style="display:none;">
+        <symbol id="icon-sun" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 4a1 1 0 011 1v1a1 1 0 11-2 0V5a1 1 0 011-1zm4.22.78a1 1 0 011.42 1.42l-.71.71a1 1 0 01-1.42-1.42l.71-.71zM16 10a1 1 0 100-2h-1a1 1 0 100 2h1zM11 15a1 1 0 11-2 0v-1a1 1 0 112 0v1zM6.05 14.95a1 1 0 10-1.414 1.414l.707.707a1 1 0 001.414-1.414l-.707-.707zM4 11a1 1 0 100-2H3a1 1 0 000 2h1zM6.464 6.464a1 1 0 10-1.414-1.414L4.343 5.757a1 1 0 101.414 1.414l.707-.707zM14 10a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </symbol>
+    </svg>
+
     <!-- Navigation -->
     <nav class="fixed w-full bg-nav-bg backdrop-blur-sm z-50">
         <!-- Desktop Navigation (Horizontal) -->
@@ -28,17 +55,25 @@
                         <a href="/#faq" class="hover:text-green-500">FAQ</a>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <!-- Enhanced Theme Toggle Button -->
-                        <button id="themeToggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-200 border border-gray-300 dark:border-gray-600">
-                            <!-- Sun icon (shown in dark mode - white) -->
-                            <svg class="w-5 h-5 hidden dark:block text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+                        <!-- Enhanced Theme Toggle Button (uses sprite) -->
+                           <!-- Animated Toggle Switch -->
+                       <!-- Animated Toggle Switch -->
+                        <button id="themeToggle" class="relative inline-flex items-center h-8 w-16 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="Toggle theme">
+                            <!-- Toggle Circle with Icon -->
+                            <span id="toggleCircle" class="absolute left-1 inline-flex items-center justify-center h-6 w-6 rounded-full bg-white dark:bg-gray-800 shadow-md transform transition-transform duration-300 dark:translate-x-8">
+                            <!-- Moon (visible in light mode) -->
+                            <svg class="w-4 h-4 text-yellow-500 block dark:hidden" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" />
                             </svg>
-                            <!-- Moon/Crescent icon (shown in light mode - black) -->
-                            <svg class="w-5 h-5 dark:hidden text-black" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M17.293 13.293A8 8 0 716.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                            <!-- Sun (visible in dark mode) -->
+                            <svg class="w-4 h-4 text-yellow-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
                             </svg>
+                            </span>
                         </button>
+
                         <a href="{% if request.url == '/pricing' %}#join-now{% else %}/pricing{% endif %}" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-all duration-200">Join Now</a>
                     </div>
                 </div>
@@ -83,14 +118,14 @@
                 </div>
                 
                 <!-- Enhanced Mobile Theme Toggle -->
-                <button id="mobileThemeToggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 transition-all duration-200">
-                    <!-- Sun icon (shown in dark mode - white) -->
-                    <svg class="w-5 h-5 hidden dark:block text-white" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+                <button id="mobileThemeToggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 transition-all duration-200" aria-label="Toggle theme mobile">
+                    <!-- Sun: visible in light mode (hidden in dark mode) -->
+                     <svg class="w-4 h-4 text-gray-700 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
                     </svg>
-                    <!-- Moon/Crescent icon (shown in light mode - black) -->
-                    <svg class="w-5 h-5 dark:hidden text-gray-800" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 716.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                    <!-- Sun (visible in dark mode) -->
+                    <svg class="w-4 h-4 text-yellow-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
                     </svg>
                 </button>
             </div>
@@ -106,6 +141,32 @@
     {% include "partials/footer.njk" %}
 
     <script src="/js/main.js"></script>
-    {% block scripts %}{% endblock %}
+    <!-- Theme toggle handlers: update localStorage, html.dark, and button aria/title -->
+   <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const html = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    const circle = document.getElementById("toggleCircle");
+
+    // set default (ambil preferensi user)
+    if (localStorage.theme === "dark" || 
+        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      html.classList.add("dark");
+      circle.classList.add("translate-x-8");
+    } else {
+      html.classList.remove("dark");
+      circle.classList.remove("translate-x-8");
+    }
+
+    // toggle saat diklik
+    toggle.addEventListener("click", () => {
+      html.classList.toggle("dark");
+      const isDark = html.classList.contains("dark");
+      localStorage.theme = isDark ? "dark" : "light";
+      circle.classList.toggle("translate-x-8", isDark);
+    });
+  });
+</script>
+{% block scripts %}{% endblock %}
 </body>
 </html>

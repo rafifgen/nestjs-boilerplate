@@ -6,7 +6,7 @@
 <!-- Hero Section -->
 <section class="pt-20 pb-20">
     <div class="container mx-auto px-8 text-center">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6">{{ heroTitle or 'Profit from Markets<br>with Pro Traders' }}</h1>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">{{ heroTitle or 'Profit from Markets <br> with Pro Traders' }}</h1>
         <p class="text-xl mb-8">{{ heroSubtitle or 'Get Trade Alerts, Daily Analysis, and Educational Guides.' }}</p>
         <p class="text-green-500 text-lg mb-8">{{ heroDescription or 'Direct access to Expert traders with a proven track record ↗' }}</p>
         <a href="/pricing" class="bg-green-500 text-white px-8 py-3 rounded-full text-lg hover:bg-green-600 transition duration-300">{{ ctaText or 'Join Now' }}</a>
@@ -79,7 +79,6 @@
 <section id="testimonials" class="py-20 bg-section-bg">
     <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-12">What members say about us</h2>
-
         <!-- Testimonials Container -->
         <div class="relative">
             <!-- Fade Overlays -->
@@ -240,96 +239,59 @@
 </section>
 
 <!-- FAQ Section -->
-<section id="faq" class="py-20">
-    <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-    <div class="max-w-3xl mx-auto space-y-4 px-4 sm:px-6">
-            <!-- FAQ Items -->
-                <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center text-gray-900 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition duration-200">
-                    <span>What markets do you cover?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">We provide real-time trade alerts for Crypto, Forex, and US Stocks. Our expert analysts monitor these markets 24/7 to identify the best opportunities for our members.</p>
-                </div>
-            </div>
+<section id="faq" class="py-20 bg-section-bg">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-gray-100">
+      Frequently Asked Questions
+    </h2>
 
-            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center text-gray-900 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition duration-200">
-                    <span>How do I receive the trade alerts?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">All trade alerts are delivered through our exclusive Discord community. You'll get instant notifications on your phone and computer, ensuring you never miss a profitable opportunity.</p>
-                </div>
-            </div>
+    <div class="max-w-3xl mx-auto space-y-4">
+      {% set faqs = [
+        {
+          question: "What markets do you cover?",
+          answer: "We cover Crypto, Forex, and US Stocks. Our analysts monitor these markets 24/7 to provide the best trade opportunities."
+        },
+        {
+          question: "How do I receive the trade alerts?",
+          answer: "Trade alerts are sent through our private Discord community with instant notifications to your phone or desktop."
+        },
+        {
+          question: "Can I cancel my subscription anytime?",
+          answer: "Yes, you can cancel anytime directly from your account dashboard—no fees or hidden terms."
+        },
+        {
+          question: "Do you provide educational content?",
+          answer: "Yes. Members get access to tutorials, strategy breakdowns, and market insights to improve independent trading skills."
+        },
+        {
+          question: "What makes Data Trader Premium different?",
+          answer: "We provide full trade explanations, daily analysis, and transparent performance reports—focused on education and trust."
+        },
+        {
+          question: "How much should I invest to get started?",
+          answer: "There's no minimum. Start with any amount you're comfortable with and always apply sound risk management."
+        },
+        {
+          question: "Is there a money-back guarantee?",
+          answer: "We don't offer refunds for digital services, but you can cancel anytime to stop future payments."
+        }
+      ] %}
 
-            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center text-gray-900 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition duration-200">
-                    <span>Can I cancel my subscription anytime?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">Yes, absolutely! You can cancel your subscription at any time with just one click. No questions asked, no hidden fees, and no commitments.</p>
-                </div>
-            </div>
-
-            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center text-gray-900 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition duration-200">
-                    <span>Do you provide educational content?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">Yes! We provide comprehensive educational materials including trading guides, market analysis techniques, and risk management strategies to help you become an independent trader.</p>
-                </div>
-            </div>
-
-            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center text-gray-900 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition duration-200">
-                    <span>What makes Data Trader Premium different?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">We don't just give you signals - we explain the reasoning behind each trade, provide daily market analysis, and maintain a proven track record. Our community is built on transparency and education.</p>
-                </div>
-            </div>
-
-            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center text-gray-900 dark:text-gray-100 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 transition duration-200">
-                    <span>How much should I invest to get started?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">We recommend starting with an amount you're comfortable with - there's no minimum requirement. Our signals work with any account size. Always practice proper risk management and never invest more than you can afford to lose.</p>
-                </div>
-            </div>
-
-            <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
-                    <button class="faq-question w-full px-8 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-100 dark:hover:bg-gray-600 transition duration-200">
-                    <span>Is there a money-back guarantee?</span>
-                    <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <div class="faq-answer px-6 pb-4 hidden">
-                    <p class="text-gray-600 dark:text-gray-300">While we don't offer refunds due to the nature of our digital services, you can cancel your subscription at any time to avoid future charges. We're confident in our service quality and track record.</p>
-                </div>
-            </div>
+      {% for item in faqs %}
+      <div class="faq-item bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+        <button class="faq-question w-full px-6 py-4 text-left font-semibold text-lg flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition duration-200 text-gray-900 dark:text-gray-100">
+          <span class="flex-1 text-center">{{ item.question }}</span>
+          <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <div class="faq-answer px-6 pb-4 hidden">
+          <p class="text-gray-600 dark:text-gray-300">{{ item.answer }}</p>
         </div>
+      </div>
+      {% endfor %}
     </div>
+  </div>
 </section>
 
 <!-- Call to Action -->
@@ -340,4 +302,28 @@
         <a href="/pricing" class="inline-block bg-white text-green-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300">Get Started Today</a>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Toggle active class pada item yang diklik
+            item.classList.toggle('active');
+            
+            // Tutup FAQ item lainnya (opsional)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
+});
+</script>
 {% endblock %}

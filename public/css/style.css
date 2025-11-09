@@ -77,10 +77,10 @@ nav {
     background: rgba(0, 0, 0, 0.05);
 }
 
-/* Add spacing for vertical nav on mobile — use padding instead of margin to avoid shifting/layout overflow */
+/* Add margin for vertical nav on mobile */
 @media (max-width: 768px) {
     body {
-        padding-left: 4rem;
+        margin-left: 4rem;
     }
 }
 
@@ -166,53 +166,6 @@ nav {
 
 .testimonial-card:hover {
     transform: translateY(-5px);
-}
-
-/* FAQ hover tweaks to improve contrast, especially in dark mode */
-.faq-question {
-    transition: background-color 0.18s ease, color 0.18s ease;
-}
-
-/* Light mode: default text color */
-.faq-question {
-    color: #111827;
-}
-
-/* Light mode: change text to green on hover */
-.faq-question:hover {
-    background-color: rgba(0, 0, 0, 0.03) !important;
-    color: #059669 !important;
-}
-
-.faq-question:hover span,
-.faq-question:hover .faq-icon {
-    color: #059669 !important;
-}
-
-/* Dark mode: default white text for readability */
-[data-theme="dark"] .faq-question,
-.dark .faq-question {
-    color: #ffffff !important;
-}
-
-/* Dark mode: change text to bright green on hover */
-[data-theme="dark"] .faq-question:hover,
-.dark .faq-question:hover {
-    background-color: rgba(255, 255, 255, 0.08) !important;
-    color: #34d399 !important;
-}
-
-[data-theme="dark"] .faq-question:hover span,
-[data-theme="dark"] .faq-question:hover .faq-icon,
-.dark .faq-question:hover span,
-.dark .faq-question:hover .faq-icon {
-    color: #34d399 !important;
-}
-
-/* Ensure svg icons inside the question inherit the text color on hover */
-.faq-question .faq-icon {
-    color: inherit;
-    transition: color 0.18s ease;
 }
 
 /* FAQ Section Background */
@@ -413,7 +366,7 @@ nav {
         margin: 0 16px;
         padding: 24px;
     }
-
+    
     #price {
         font-size: 2.5rem;
     }
@@ -695,11 +648,11 @@ nav {
         width: 300px !important;
         padding: 20px;
     }
-
+    
     .testimonials-track {
         gap: 16px;
     }
-
+    
     .testimonial-fade-left,
     .testimonial-fade-right {
         width: 12px;
@@ -711,12 +664,12 @@ nav {
         width: 280px !important;
         padding: 16px;
     }
-
+    
     .testimonial-card h3 {
         font-size: 16px;
         margin-bottom: 12px;
     }
-
+    
     .testimonial-card p {
         font-size: 13px;
         margin-bottom: 16px;
@@ -895,17 +848,25 @@ nav {
     .faq-trigger {
         padding: 1.25rem;
     }
-
+    
     .faq-trigger h3 {
         font-size: 1rem;
     }
-
+    
     .faq-inner {
         padding: 0 1.25rem 1.25rem 1.25rem;
     }
-
+    
     .faq-text {
         font-size: 0.9rem;
+    }
+    .faq-question {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+    
+    .faq-icon {
+        right: 1rem;
     }
 }
 
@@ -945,15 +906,30 @@ nav {
 }
 
 .faq-question {
-    cursor: pointer;
-    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center; /* Pusatkan vertikal */
+    text-align: center;
+    position: relative;
+    padding-left: 3rem; /* Beri ruang untuk ikon */
+    padding-right: 3rem; /* Beri ruang untuk ikon */
+}
+.faq-question span {
+    flex-grow: 1;
+    text-align: center;
 }
 
 .faq-answer {
-    padding-bottom: 1.5rem;
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 1.5rem;
 }
 
 .faq-item.active .faq-answer {
-    display: block;
+    max-height: 500px; /* Nilai tinggi yang cukup untuk konten */
+    padding-bottom: 1rem;
+}
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
 }
