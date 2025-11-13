@@ -8,6 +8,7 @@ import {
   Res,
   HttpStatus,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { TestimonialsService } from '../testimonials/testimonials.service';
@@ -15,8 +16,10 @@ import { CreateTestimonialDto } from '../testimonials/dto/create-testimonial.dto
 import { UpdateTestimonialDto } from '../testimonials/dto/update-testimonial.dto';
 import { ThemeService } from '../view/theme.service';
 import { ViewService } from '../view/view.service';
+import { AdminAuthGuard } from '../auth/guards/admin-auth.guard';
 
 @Controller('admin')
+@UseGuards(AdminAuthGuard)
 export class AdminController {
   constructor(
     private readonly testimonialsService: TestimonialsService,

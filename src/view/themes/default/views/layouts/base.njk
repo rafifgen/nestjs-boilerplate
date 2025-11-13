@@ -116,7 +116,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Enhanced Mobile Theme Toggle -->
                 <button id="mobileThemeToggle" class="p-2 rounded-full bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 transition-all duration-200" aria-label="Toggle theme mobile">
                     <!-- Sun: visible in light mode (hidden in dark mode) -->
@@ -141,32 +141,6 @@
     {% include "partials/footer.njk" %}
 
     <script src="/js/main.js"></script>
-    <!-- Theme toggle handlers: update localStorage, html.dark, and button aria/title -->
-   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const html = document.documentElement;
-    const toggle = document.getElementById("themeToggle");
-    const circle = document.getElementById("toggleCircle");
-
-    // set default (ambil preferensi user)
-    if (localStorage.theme === "dark" || 
-        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      html.classList.add("dark");
-      circle.classList.add("translate-x-8");
-    } else {
-      html.classList.remove("dark");
-      circle.classList.remove("translate-x-8");
-    }
-
-    // toggle saat diklik
-    toggle.addEventListener("click", () => {
-      html.classList.toggle("dark");
-      const isDark = html.classList.contains("dark");
-      localStorage.theme = isDark ? "dark" : "light";
-      circle.classList.toggle("translate-x-8", isDark);
-    });
-  });
-</script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

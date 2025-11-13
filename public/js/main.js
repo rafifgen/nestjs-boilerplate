@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const themeToggleBtn = document.getElementById('themeToggle');
   const mobileThemeToggleBtn = document.getElementById('mobileThemeToggle');
+  const toggleCircle = document.getElementById('toggleCircle');
 
   // Check for saved user preference, if any, load the value from localStorage
   const currentTheme = localStorage.getItem('theme');
@@ -14,6 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
 
+  // Update circle position on load
+  const updateCirclePosition = () => {
+    const theme = document.documentElement.getAttribute('data-theme');
+    if (toggleCircle) {
+      if (theme === 'dark') {
+        toggleCircle.classList.add('translate-x-8');
+      } else {
+        toggleCircle.classList.remove('translate-x-8');
+      }
+    }
+  };
+  updateCirclePosition();
+
   function toggleTheme() {
     // Toggle between dark and light
     let theme = document.documentElement.getAttribute('data-theme');
@@ -24,6 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply the theme to the document
     document.documentElement.setAttribute('data-theme', switchToTheme);
+
+    // Update circle position
+    updateCirclePosition();
   }
 
   // Add event listeners for both desktop and mobile theme toggles
@@ -53,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (otherItem !== item) {
             const otherAnswer = otherItem.querySelector('.faq-answer');
             const otherIcon = otherItem.querySelector('.faq-icon');
-            
+
             if (otherAnswer && otherIcon) {
               otherAnswer.classList.add('hidden');
               otherIcon.style.transform = 'rotate(0deg)';
@@ -83,10 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      
+
       const targetId = link.getAttribute('href').substring(1);
       const targetElement = document.getElementById(targetId);
-      
+
       if (targetElement) {
         const headerOffset = 80; // Adjust based on your fixed header height
         const elementPosition = targetElement.getBoundingClientRect().top;
@@ -143,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update button states
       monthlyBtn.classList.add('bg-green-500', 'text-white');
       monthlyBtn.classList.remove('bg-transparent', 'border', 'border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
-      
+
       yearlyBtn.classList.remove('bg-green-500', 'text-white');
       yearlyBtn.classList.add('bg-transparent', 'border', 'border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
 
@@ -157,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update button states
       yearlyBtn.classList.add('bg-green-500', 'text-white');
       yearlyBtn.classList.remove('bg-transparent', 'border', 'border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
-      
+
       monthlyBtn.classList.remove('bg-green-500', 'text-white');
       monthlyBtn.classList.add('bg-transparent', 'border', 'border-gray-300', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
 
@@ -178,24 +195,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const testimonialsTrack = document.querySelector('.testimonials-track');
-  
+
   if (testimonialsTrack) {
     // Clone testimonials for seamless infinite scroll
     const testimonials = Array.from(testimonialsTrack.children);
-    
+
     // Clone all testimonials and append them for seamless loop
     testimonials.forEach(testimonial => {
       const clone = testimonial.cloneNode(true);
       testimonialsTrack.appendChild(clone);
     });
-    
+
     // Pause animation on hover for better UX
     const testimonialsContainer = document.querySelector('.testimonials-container');
     if (testimonialsContainer) {
       testimonialsContainer.addEventListener('mouseenter', () => {
         testimonialsTrack.style.animationPlayState = 'paused';
       });
-      
+
       testimonialsContainer.addEventListener('mouseleave', () => {
         testimonialsTrack.style.animationPlayState = 'running';
       });

@@ -1,6 +1,15 @@
 /* Custom styles */
 :root {
-    /* Light theme variables */
+    /* Light theme variables (default) */
+    --background: #ffffff;
+    --text: #1a1a1a;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --section-bg: #f5f5f5;
+    --card-bg: #ffffff;
+}
+
+[data-theme="light"] {
+    /* Light theme variables (explicit) */
     --background: #ffffff;
     --text: #1a1a1a;
     --nav-bg: rgba(255, 255, 255, 0.9);
@@ -366,7 +375,7 @@ nav {
         margin: 0 16px;
         padding: 24px;
     }
-    
+
     #price {
         font-size: 2.5rem;
     }
@@ -648,11 +657,11 @@ nav {
         width: 300px !important;
         padding: 20px;
     }
-    
+
     .testimonials-track {
         gap: 16px;
     }
-    
+
     .testimonial-fade-left,
     .testimonial-fade-right {
         width: 12px;
@@ -664,12 +673,12 @@ nav {
         width: 280px !important;
         padding: 16px;
     }
-    
+
     .testimonial-card h3 {
         font-size: 16px;
         margin-bottom: 12px;
     }
-    
+
     .testimonial-card p {
         font-size: 13px;
         margin-bottom: 16px;
@@ -848,15 +857,15 @@ nav {
     .faq-trigger {
         padding: 1.25rem;
     }
-    
+
     .faq-trigger h3 {
         font-size: 1rem;
     }
-    
+
     .faq-inner {
         padding: 0 1.25rem 1.25rem 1.25rem;
     }
-    
+
     .faq-text {
         font-size: 0.9rem;
     }
@@ -864,7 +873,7 @@ nav {
         padding-left: 2.5rem;
         padding-right: 2.5rem;
     }
-    
+
     .faq-icon {
         right: 1rem;
     }
