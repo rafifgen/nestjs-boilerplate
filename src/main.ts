@@ -38,7 +38,13 @@ async function bootstrap() {
     if (req.headers.cookie) {
       req.headers.cookie.split(';').forEach((cookie) => {
         const [key, val] = cookie.split('=');
-        cookies[key.trim()] = decodeURIComponent(val);
+        if (key && val) {
+          try {
+            cookies[key.trim()] = decodeURIComponent(val);
+          } catch {
+            cookies[key.trim()] = val;
+          }
+        }
       });
     }
     req.cookies = cookies;
@@ -53,12 +59,11 @@ async function bootstrap() {
         '/pricing',
         '/admin/testimonials',
         '/admin/testimonials/create',
-        '/web/home',
-        '/web/login',
-        '/web/register',
-        '/web/logout',
-        { path: '/web/login', method: RequestMethod.POST },
-        { path: '/web/register', method: RequestMethod.POST },
+        '/login',
+        '/register',
+        '/logout',
+        { path: '/login', method: RequestMethod.POST },
+        { path: '/register', method: RequestMethod.POST },
         { path: '/admin/testimonials/:id/edit', method: RequestMethod.GET },
         { path: '/admin/testimonials/:id', method: RequestMethod.GET },
         { path: '/admin/testimonials/:id', method: RequestMethod.POST },

@@ -12,19 +12,49 @@ import { Request, Response } from 'express';
 import { ThemeService } from '../view/theme.service';
 import { ViewService } from '../view/view.service';
 import { AuthService } from '../auth/auth.service';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { AllConfigType } from '../config/config.type';
+import { JwtPayloadType } from '../auth/strategies/types/jwt-payload.type';
 
-@Controller('web')
+@Controller()
 export class WebController {
   constructor(
     private readonly themeService: ThemeService,
     private readonly view: ViewService,
     private readonly authService: AuthService,
+    private readonly jwtService: JwtService,
+    private readonly configService: ConfigService<AllConfigType>,
   ) {}
 
-  @Get('home')
-  async home(@Req() req: Request, @Res() res: Response) {
+  private getUserFromToken(req: Request): JwtPayloadType | null {
+    try {
+      const cookies = req.cookies || {};
+      console.log('🔍 Cookies received:', cookies);
+      const token = cookies.authToken;
+      console.log('🔍 Token from cookie:', token);
+      if (!token) {
+        console.log('🔍 No token found in cookies');
+        return null;
+      }
+
+      const payload = this.jwtService.verify(token, {
+        secret: this.configService.getOrThrow('auth.secret', { infer: true }),
+      });
+      console.log('🔍 JWT verified, payload:', payload);
+      return payload;
+    } catch (error) {
+      console.log('🔍 JWT verification error:', error.message);
+      return null;
+    }
+  }
+
+  private async renderHome(req: Request, res: Response) {
     const theme = this.themeService.getTheme(req);
     this.view.configure(theme);
+    const user = this.getUserFromToken(req);
+    const error = req.query.error as string | undefined;
+
     const navLinks = [
       { href: '#features', label: 'Features' },
       { href: '#track-record', label: 'Track Record' },
@@ -32,6 +62,12 @@ export class WebController {
       { href: '#testimonials', label: 'Testimonials' },
       { href: '#faq', label: 'FAQ' },
     ];
+
+    let errorMessage = '';
+    if (error === 'admin_only') {
+      errorMessage =
+        'Admin page only! Please contact administrator for access.';
+    }
 
     const html = await this.view.render('pages/home.njk', {
       title: 'Home Page',
@@ -48,10 +84,21 @@ export class WebController {
         description: 'Premium trade alerts, analysis and education for traders',
         keywords: 'trading, signals, crypto, forex, stocks',
       },
-      user: null, // populate when you implement auth
+      user,
       theme,
+      errorMessage,
     });
     res.type('html').send(html);
+  }
+
+  @Get('')
+  async index(@Req() req: Request, @Res() res: Response) {
+    await this.renderHome(req, res);
+  }
+
+  @Get('home')
+  async home(@Req() req: Request, @Res() res: Response) {
+    await this.renderHome(req, res);
   }
 
   @Get('login')
@@ -67,11 +114,7 @@ export class WebController {
   }
 
   @Post('login')
-  async login(
-    @Body() body: any,
-    @Req() req: Request,
-    @Res() res: Response,
-  ) {
+  async login(@Body() body: any, @Req() req: Request, @Res() res: Response) {
     const theme = this.themeService.getTheme(req);
     this.view.configure(theme);
 
@@ -97,8 +140,8 @@ export class WebController {
         }`,
       ]);
 
-      // Redirect to admin testimonials page
-      res.redirect('/admin/testimonials');
+      // Redirect to home page
+      res.redirect('/');
     } catch (error) {
       const errorMessage =
         error.response?.errors?.email ||
@@ -174,7 +217,7 @@ export class WebController {
       });
 
       // Redirect to login with success message
-      res.redirect('/web/login?registered=true');
+      res.redirect('/login?registered=true');
     } catch (error) {
       const html = await this.view.render('pages/auth/register.njk', {
         title: 'Register',
@@ -194,6 +237,6 @@ export class WebController {
       'authToken=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0',
       'refreshToken=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0',
     ]);
-    res.redirect('/web/home');
+    res.redirect('/home');
   }
 }

@@ -19,8 +19,8 @@ export class AdminAuthGuard implements CanActivate {
     const token = this.extractTokenFromCookie(request);
 
     if (!token) {
-      // Redirect to login page if no token
-      response.redirect('/web/login');
+      // No token - redirect to login
+      response.redirect('/login');
       return false;
     }
 
@@ -31,8 +31,8 @@ export class AdminAuthGuard implements CanActivate {
 
       // Check if user has admin role (role.id === 1)
       if (payload.role?.id !== RoleEnum.admin) {
-        // Redirect to login if not admin
-        response.redirect('/web/login');
+        // User is logged in but not admin - show error and redirect to home
+        response.redirect('/?error=admin_only');
         return false;
       }
 
@@ -41,7 +41,7 @@ export class AdminAuthGuard implements CanActivate {
       return true;
     } catch {
       // Invalid or expired token - redirect to login
-      response.redirect('/web/login');
+      response.redirect('/login');
       return false;
     }
   }

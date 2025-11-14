@@ -3,13 +3,36 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<!-- Admin Access Notification Popup (Client-side) -->
+<script>
+  // Check URL query parameters for admin_only error
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('error') === 'admin_only') {
+    alert('Access Denied!\n\nAdmin page only. You do not have permission to access this page.');
+    // Clean up URL and redirect to home
+    window.history.replaceState({}, document.title, '/');
+  }
+</script>
+
 <!-- Hero Section -->
 <section class="pt-20 pb-20">
     <div class="container mx-auto px-8 text-center">
         <h1 class="text-5xl md:text-6xl font-bold mb-6">{{ heroTitle or 'Profit from Markets <br> with Pro Traders' }}</h1>
         <p class="text-xl mb-8">{{ heroSubtitle or 'Get Trade Alerts, Daily Analysis, and Educational Guides.' }}</p>
         <p class="text-green-500 text-lg mb-8">{{ heroDescription or 'Direct access to Expert traders with a proven track record ↗' }}</p>
-        <a href="/pricing" class="bg-green-500 text-white px-8 py-3 rounded-full text-lg hover:bg-green-600 transition duration-300">{{ ctaText or 'Join Now' }}</a>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
+            <a href="/pricing" class="bg-green-500 text-white px-8 py-3 rounded-full text-lg hover:bg-green-600 transition duration-300">{{ ctaText or 'Join Now' }}</a>
+
+            {% if user %}
+                <a href="/logout" class="bg-red-500 text-white px-8 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">Logout ({{ user.email }})</a>
+            {% else %}
+                <a href="/login" class="bg-blue-500 text-white px-8 py-3 rounded-full text-lg hover:bg-blue-600 transition duration-300">Login</a>
+                <a href="/register" class="bg-purple-500 text-white px-8 py-3 rounded-full text-lg hover:bg-purple-600 transition duration-300">Sign Up</a>
+            {% endif %}
+        </div>
+
         <div class="mt-8">
             <p class="text-gray-500 dark:text-gray-400">{{ subscriberCount or '770k+' }} Subscribers on YouTube</p>
         </div>
