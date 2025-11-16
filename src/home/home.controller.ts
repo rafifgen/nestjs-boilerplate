@@ -38,7 +38,7 @@ export class HomeController {
 
 	private getPricingPageData() {
 		return {
-			pricingHeroTitle: "You've seen the results.Now it's your turn",
+			pricingHeroTitle: "You've seen the results.\nNow it's your turn",
 			pricingHeroSubtitle:
 				'Join thousands of successful traders who trust our signals',
 		};
