@@ -103,162 +103,42 @@
     <div class="container mx-auto px-4">
         <h2 class="text-4xl font-bold text-center mb-12">What members say about us</h2>
         <!-- Testimonials Container -->
-        <div class="relative">
-            <!-- Fade Overlays -->
-            <div class="testimonial-fade-left absolute left-0 top-0 bottom-0 w-16 md:w-32"></div>
-            <div class="testimonial-fade-right absolute right-0 top-0 bottom-0 w-16 md:w-32"></div>
 
-            <!-- Testimonials Scroll Container -->
-            <div class="testimonials-container overflow-hidden">
-                <div class="testimonials-track flex space-x-6">
-                    {% if testimonials | length > 0 %}
-                        {% for testimonial in testimonials %}
-                        <!-- Testimonial {{ loop.index }} -->
-                        <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                            <h3 class="text-lg font-bold text-white mb-4">{{ testimonial.position }}</h3>
-                            <p class="text-gray-300 mb-6 text-sm leading-relaxed">{{ testimonial.content }}</p>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-3">
-                                    {% if testimonial.avatar %}
-                                    <img src="{{ testimonial.avatar }}" alt="{{ testimonial.name }}" class="w-10 h-10 rounded-full">
-                                    {% else %}
-                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                    {% endif %}
-                                    <span class="text-white font-semibold text-sm">{{ testimonial.name }}</span>
-                                </div>
-                                <div class="flex space-x-1">
-                                    <span class="text-yellow-400">
-                                        {% for i in range(0, testimonial.rating) %}⭐{% endfor %}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    {% else %}
-                        <!-- Fallback: No testimonials in database -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"Data Trader Premium Has Made Me a Better Trader"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">As a beginner trader, I was struggling to find consistent results. Data Trader Premium not only provided accurate signals but also educated me on the 'why' behind each trade. The community is supportive, and the analysts are knowledgeable. I've seen significant improvement in my trading performance since joining.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Daniel Iocob</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"Trusted Investment, Amazing Returns"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">I've been in multiple trading groups, but Data Trader Premium stands out. Their transparency about wins and losses, combined with detailed explanations for each signal, has helped me understand market dynamics better. The educational content is top-notch, and the community atmosphere is incredibly positive.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Ronny Sveigdalen</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"I Just Take the Setups and Go About My Day"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">I've been in a couple premium private groups but Data Trader is home for me. Very relaxing and yet extremely productive community. High quality setups. I don't have to monitor the charts, the Data Trader analysts do that for me. All I do is take the setups and go about my business and check discord when I can for updates and new setups.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Destiny Child</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 4 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"This Place Actually Teaches You How to Trade"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">This has been a game changer for me. Data Trader Premium doesn't just give me signals but also reason for that signals, also they have a category that actually teach me to become an independent trader. The content is regularly updated to match current market conditions, the analysis signals is thorough, and most importantly it delivers results.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Kreuz</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 5 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"Best Trading Community I've Been In"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">Hands down one of the best trading communities out there. The signals have been incredibly accurate, each result speaks volumes about the consistency and expertise behind them. The quality of conversations is top-tier: insightful, supportive, and always value-packed. Truly impressed with the overall experience so far.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Manraj Dua</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 6 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"Explains the Trades So You Actually Learn"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">This trading community is absolutely worth joining! I've learned so much here, not just blindly copying trades, but actually understanding the logic behind them. The analysts explain their strategies clearly, which really helps you grow as a trader. The community vibe is also amazing. Everyone is friendly and supportive.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Arron SU</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 7 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"Solid Growth Since Day One"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">Been in the community since day one, and I'm really impressed. The team is super helpful with any questions or problems, and the course gives you a solid base with some of the strategies the analysts use. There are new signals and setups every day, daily analysis, and the results speak for themselves.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Alex</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 8 -->
-                    <div class="testimonial-card flex-shrink-0 w-80 md:w-96 bg-gray-800 dark:bg-gray-900 rounded-xl p-6 border border-gray-700 dark:border-gray-600">
-                        <h3 class="text-lg font-bold text-white mb-4">"Accurate Signals, Consistent Results"</h3>
-                        <p class="text-gray-300 mb-6 text-sm leading-relaxed">Data Trader Premium is an excellent trading signals community. The signals are accurate, timely, and backed by solid analysis. I've seen consistent results and gained more confidence in my trading decisions. The community is supportive, and the admins are knowledgeable and responsive.</p>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                <span class="text-white font-semibold text-sm">Fighter</span>
-                            </div>
-                            <div class="flex space-x-1">
-                                <span class="text-yellow-400">⭐⭐⭐⭐⭐</span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
+    <div class="relative testimonials-wrapper">
+      
+      <!-- Fade overlays -->
+      <div class="testimonial-fade-left absolute left-0 top-0 bottom-0"></div>
+      <div class="testimonial-fade-right absolute right-0 top-0 bottom-0"></div>      
+      <!-- Track Container -->
+      <div class="testimonials-container overflow-hidden relative">
+        <div class="testimonials-track flex gap-6" id="testimonial-track">
+          {% for testimonial in testimonials %}
+          <div class="testimonial-card flex-shrink-0 w-80 md:w-96">
+            <h3 class="text-lg font-bold mb-4 text-gray-900 dark:text-white">
+              "{{ testimonial.position }}"
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-6 text-sm leading-relaxed">
+              {{ testimonial.content }}
+            </p>
+            <div class="testimonial-footer">
+              <div class="testimonial-author">
+                {% if testimonial.avatar %}
+                <img src="{{ testimonial.avatar }}" alt="{{ testimonial.name }}" class="testimonial-avatar">
+                {% else %}
+                <div class="testimonial-avatar"></div>
+                {% endif %}
+                <h4 class="testimonial-author-name">{{ testimonial.name }}</h4>
+              </div>
+              <div class="testimonial-rating">
+                {% for i in range(0, testimonial.rating) %}⭐{% endfor %}
+              </div>
             </div>
+          </div>
+          {% endfor %}
         </div>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- FAQ Section -->
