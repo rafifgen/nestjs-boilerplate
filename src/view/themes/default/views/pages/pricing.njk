@@ -6,7 +6,7 @@
 <!-- Pricing Hero Section -->
 <section class="pt-20 pb-20">
     <div class="container mx-auto px-4 text-center">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6">{{ pricingHeroTitle or 'You\'ve seen the results.<br>Now it\'s <span class="text-green-500">your</span> turn' }}</h1>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">{{ pricingHeroTitle or 'You\'ve seen the results.Now it\'s your turn' }}</h1>
         <p class="text-xl mb-8">{{ pricingHeroSubtitle or 'Join thousands of successful traders who trust our signals' }}</p>
     </div>
 </section>
@@ -165,7 +165,7 @@
                 <h3 class="text-xl font-bold mb-4">Discord Community Access</h3>
                 <p class="text-gray-600 dark:text-gray-400">Join our exclusive Discord server with real-time alerts, market discussions, and direct access to professional traders.</p>
             </div>
-            
+
             <div class="text-center">
                 <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -175,7 +175,7 @@
                 <h3 class="text-xl font-bold mb-4">Multi-Market Coverage</h3>
                 <p class="text-gray-600 dark:text-gray-400">Get signals across Crypto, Forex, and US Stock markets. Diversify your trading opportunities with expert analysis.</p>
             </div>
-            
+
             <div class="text-center">
                 <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -185,7 +185,7 @@
                 <h3 class="text-xl font-bold mb-4">Daily Analysis</h3>
                 <p class="text-gray-600 dark:text-gray-400">Receive comprehensive daily market analysis, trade setups, and economic event previews to stay ahead of the market.</p>
             </div>
-            
+
             <div class="text-center">
                 <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -195,7 +195,7 @@
                 <h3 class="text-xl font-bold mb-4">Proven Track Record</h3>
                 <p class="text-gray-600 dark:text-gray-400">85% win rate with transparent reporting. All results are documented and shared with the community for full transparency.</p>
             </div>
-            
+
             <div class="text-center">
                 <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -205,7 +205,7 @@
                 <h3 class="text-xl font-bold mb-4">Educational Resources</h3>
                 <p class="text-gray-600 dark:text-gray-400">Access comprehensive trading courses, strategy guides, and risk management materials to become an independent trader.</p>
             </div>
-            
+
             <div class="text-center">
                 <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -303,14 +303,14 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const faqItems = document.querySelectorAll('.faq-item');
-    
+
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
-        
+
         question.addEventListener('click', () => {
             // Toggle active class pada item yang diklik
             item.classList.toggle('active');
-            
+
             // Tutup FAQ item lainnya (opsional)
             faqItems.forEach(otherItem => {
                 if (otherItem !== item && otherItem.classList.contains('active')) {
